@@ -18,11 +18,14 @@ class MlxPrism < Formula
 
     pip = venv/"bin/pip"
 
+    # Ensure build tools available
+    system pip, "install", "--quiet", "setuptools", "wheel", "cmake"
+
     # Install mlx-lm first (provides mlx_lm.* commands)
     system pip, "install", "--quiet", "mlx-lm"
 
     # Install PrismML MLX fork on top — overrides upstream mlx in this venv
-    system pip, "install", "--quiet", "--no-build-isolation",
+    system pip, "install", "--quiet",
            "mlx @ https://github.com/PrismML-Eng/mlx/archive/88c9c205a50fbaaf432a50338570d85273925601.tar.gz"
 
     # Expose mlx_lm.* commands prefixed with bonsai-
