@@ -25,8 +25,8 @@ class MlxPrism < Formula
     system pip, "install", "--quiet", "mlx-lm"
 
     # Install PrismML MLX fork on top — overrides upstream mlx in this venv
-    # SETUPTOOLS_SCM_PRETEND_VERSION avoids git rev-parse failure in tarball builds
-    ENV["SETUPTOOLS_SCM_PRETEND_VERSION"] = "0.0.1"
+    # PYPI_RELEASE=1 skips git rev-parse version call in setup.py
+    ENV["PYPI_RELEASE"] = "1"
     system pip, "install", "--quiet",
            "mlx @ https://github.com/PrismML-Eng/mlx/archive/88c9c205a50fbaaf432a50338570d85273925601.tar.gz"
 
